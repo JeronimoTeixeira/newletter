@@ -4,4 +4,6 @@ public class CommonConstants {
     public static final String TABLE_CLIENT = "clients";
     public static final String REGION_AWS = "sa-east-1";
     public static final String URL_QUEUE = "https://sqs.sa-east-1.amazonaws.com/944441240823/NewsLetter.fifo";
+    public static final String PHONE_TWILLIO = "14155238886";
+    public static final String PREFIX_WPP = "whatsapp:+";
 }

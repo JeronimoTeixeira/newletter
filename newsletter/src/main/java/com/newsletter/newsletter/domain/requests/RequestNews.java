@@ -17,4 +17,5 @@ public class RequestNews implements Serializable {
 
     @JsonProperty("footer")
     private String  footer;
+
 }

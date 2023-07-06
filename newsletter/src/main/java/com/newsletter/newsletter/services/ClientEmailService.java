@@ -3,9 +3,12 @@ package com.newsletter.newsletter.services;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.model.AmazonDynamoDBException;
 import com.newsletter.newsletter.domain.dynamo.Client;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ClientEmailService {
@@ -20,5 +23,11 @@ public class ClientEmailService {
         catch (AmazonDynamoDBException exception) {
             System.err.println(exception.getMessage());
         }
+    }
+
+    public List<Client> getClients(){
+        final AmazonDynamoDB dynamoDBClient = AmazonDynamoDBClientBuilder.defaultClient();
+        final DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(dynamoDBClient);
+        return dynamoDBMapper.scan(Client.class, new DynamoDBScanExpression());
     }
 }

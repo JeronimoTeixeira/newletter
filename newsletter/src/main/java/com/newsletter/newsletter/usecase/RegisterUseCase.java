@@ -16,7 +16,7 @@ public class RegisterUseCase {
         Client client = Client.builder()
                 .name(requestRegister.getName())
                 .email(requestRegister.getEmail())
-                .telephone(requestRegister.getTelephone())
+                .phone(requestRegister.getTelephone())
                 .build();
         clientEmailService.insertClient(client);
     }
