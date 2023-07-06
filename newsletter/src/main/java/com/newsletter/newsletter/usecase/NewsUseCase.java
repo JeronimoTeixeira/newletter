@@ -26,14 +26,15 @@ public class NewsUseCase {
 
     public List<RequestNews> getNews() throws JsonProcessingException{
         List<Message> messages = newsService.getNews();
-        List<RequestNews> listRequestNews = new ArrayList<>();
+        List<RequestNews> requestNewsList = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
         for (Message message : messages) {
             String body = message.getBody();
             RequestNews request = objectMapper.readValue(body, RequestNews.class);
-            listRequestNews.add(request);
+            requestNewsList.add(request);
+            newsService.deleteNews(message);
         }
-        return listRequestNews;
+        return requestNewsList;
     }
 
 }

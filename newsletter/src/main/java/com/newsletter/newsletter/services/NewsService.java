@@ -22,8 +22,11 @@ public class NewsService {
         try{
             SendMessageRequest sendMessageRequest = new SendMessageRequest()
                     .withQueueUrl(CommonConstants.URL_QUEUE)
-                    .withMessageBody(serializedObject);
+                    .withMessageBody(serializedObject)
+                    .withMessageGroupId("news-letter")
+                    ;
             sqsClient.sendMessage(sendMessageRequest);
+
         }
         catch (AmazonSQSException exception){
             System.err.println(exception.getMessage());
@@ -45,6 +48,24 @@ public class NewsService {
         }
 
         return null;
+    }
+
+    public void deleteNews(Message message){
+        try{
+            String messageReceiptHandle = message.getReceiptHandle();
+            sqsClient.deleteMessage(
+                new DeleteMessageRequest()
+                        .withQueueUrl(CommonConstants.URL_QUEUE)
+                        .withReceiptHandle(messageReceiptHandle)
+            );
+
+//            sqsClient.getQueueAttributes()
+
+        }
+        catch (AmazonSQSException exception){
+            throw exception;
+        }
+
     }
 
 
