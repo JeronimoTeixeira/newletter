@@ -14,7 +14,7 @@ public class RequestRegister {
     @JsonProperty("email")
     private String email;
 
-    @JsonProperty("telephone")
-    private String telephone;
+    @JsonProperty("phone")
+    private String phone;
 
 }

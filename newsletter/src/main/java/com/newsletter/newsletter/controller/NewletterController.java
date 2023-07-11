@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.newsletter.newsletter.domain.requests.RequestNews;
 import com.newsletter.newsletter.domain.requests.RequestRegister;
 import com.newsletter.newsletter.usecase.NewsUseCase;
-import com.newsletter.newsletter.usecase.RegisterUseCase;
+import com.newsletter.newsletter.usecase.RegisterContactUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class NewletterController {
 
 
     @Autowired
-    private RegisterUseCase registerUseCase;
+    private RegisterContactUseCase registerContactUseCase;
 
     @Autowired
     private NewsUseCase newsUseCase;
@@ -28,7 +28,7 @@ public class NewletterController {
 
     @PostMapping("/register")
     private ResponseEntity<String> registerEmail(@RequestBody RequestRegister request){
-        registerUseCase.register(request);
+        registerContactUseCase.register(request);
         return new ResponseEntity<String>("Cadastrado com sucesso", HttpStatus.OK);
     }
 

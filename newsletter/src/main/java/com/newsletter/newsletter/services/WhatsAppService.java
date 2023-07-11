@@ -16,11 +16,17 @@ public class WhatsAppService {
     }
 
     public void sendMessage(String phone, String messageWhatsApp){
-        Message message = Message.creator(
-                        new PhoneNumber(CommonConstants.PREFIX_WPP + phone),
-                        new PhoneNumber(CommonConstants.PREFIX_WPP + CommonConstants.PHONE_TWILLIO),
-                        messageWhatsApp)
-                .create();
+        try{
+            Message message = Message.creator(
+                            new PhoneNumber(CommonConstants.PREFIX_WPP + phone),
+                            new PhoneNumber(CommonConstants.PREFIX_WPP + CommonConstants.PHONE_TWILLIO),
+                            messageWhatsApp)
+                    .create();
+        }
+        catch (Exception exception){
+            throw exception;
+        }
+
     }
 
 

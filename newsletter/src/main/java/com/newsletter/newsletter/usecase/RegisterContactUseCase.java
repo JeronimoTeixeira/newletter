@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RegisterUseCase {
+public class RegisterContactUseCase {
 
     @Autowired
     private ClientEmailService clientEmailService;
@@ -16,7 +16,7 @@ public class RegisterUseCase {
         Client client = Client.builder()
                 .name(requestRegister.getName())
                 .email(requestRegister.getEmail())
-                .phone(requestRegister.getTelephone())
+                .phone(requestRegister.getPhone())
                 .build();
         clientEmailService.insertClient(client);
     }

@@ -44,10 +44,8 @@ public class NewsService {
             return receiveMessageResult.getMessages();
         }
         catch (AmazonSQSException exception){
-//            S
+            throw exception;
         }
-
-        return null;
     }
 
     public void deleteNews(Message message){
@@ -58,8 +56,6 @@ public class NewsService {
                         .withQueueUrl(CommonConstants.URL_QUEUE)
                         .withReceiptHandle(messageReceiptHandle)
             );
-
-//            sqsClient.getQueueAttributes()
 
         }
         catch (AmazonSQSException exception){

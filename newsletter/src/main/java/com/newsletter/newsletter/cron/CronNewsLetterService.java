@@ -5,7 +5,7 @@ import com.newsletter.newsletter.domain.dynamo.Client;
 import com.newsletter.newsletter.domain.requests.RequestNews;
 import com.newsletter.newsletter.services.ClientEmailService;
 import com.newsletter.newsletter.usecase.NewsUseCase;
-import com.newsletter.newsletter.usecase.RegisterUseCase;
+import com.newsletter.newsletter.usecase.RegisterContactUseCase;
 import com.newsletter.newsletter.usecase.WhatsAppUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -23,7 +23,7 @@ public class CronNewsLetterService {
     private NewsUseCase newsUseCase;
 
     @Autowired
-    private RegisterUseCase registerUseCase;
+    private RegisterContactUseCase registerContactUseCase;
 
     @Autowired
     private WhatsAppUseCase whatsAppUseCase;

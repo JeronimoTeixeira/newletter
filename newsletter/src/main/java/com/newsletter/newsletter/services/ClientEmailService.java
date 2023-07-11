@@ -13,21 +13,22 @@ import java.util.List;
 @Service
 public class ClientEmailService {
 
-    public void insertClient(Client contactClient){
-        final AmazonDynamoDB dynamoDBClient = AmazonDynamoDBClientBuilder.defaultClient();
-        final DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(dynamoDBClient);
+    private DynamoDBMapper dynamoDBMapper;
+    public ClientEmailService(){
+        AmazonDynamoDB dynamoDBClient = AmazonDynamoDBClientBuilder.defaultClient();
+        dynamoDBMapper = new DynamoDBMapper(dynamoDBClient);
+    }
 
+    public void insertClient(Client contactClient){
         try {
             dynamoDBMapper.save(contactClient);
         }
         catch (AmazonDynamoDBException exception) {
-            System.err.println(exception.getMessage());
+            throw exception;
         }
     }
 
     public List<Client> getClients(){
-        final AmazonDynamoDB dynamoDBClient = AmazonDynamoDBClientBuilder.defaultClient();
-        final DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(dynamoDBClient);
         return dynamoDBMapper.scan(Client.class, new DynamoDBScanExpression());
     }
 }
